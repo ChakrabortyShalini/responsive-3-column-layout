@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Responsive 3-Column Layout</title>
+  <style>
+    /* Mobile-first: single column */
+    :root{
+      --gap: 1rem;
+      --pad: 1rem;
+      --bg: #f7f8fa;
+      --card-bg: #ffffff;
+      --muted: #6b7280;
+      --radius: 8px;
+      --max-width: 1100px;
+    }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: #0f172a;
+      line-height:1.4;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding: calc(var(--pad) * 1.5);
+      display:flex;
+      justify-content:center;
+    }
+
+    .page {
+      width:100%;
+      max-width: var(--max-width);
+    }
+
+    header {
+      margin-bottom: var(--gap);
+    }
+
+    header h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.25rem;
+    }
+    header p { margin:0; color:var(--muted); font-size:0.95rem; }
+
+    /* Grid container */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr; /* single column on mobile */
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    /* Card / column style */
+    .card {
+      background: var(--card-bg);
+      padding: var(--pad);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 1px 4px rgba(15,23,42,0.06);
+      border: 1px solid rgba(15,23,42,0.04);
+    }
+
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .card p { margin:0; color:var(--muted); }
+
+    /* Desktop / wide screens: 3 columns */
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Optional: make layout comfortable on very large screens */
+    @media (min-width: 1200px) {
+      :root { --pad: 1.25rem; --gap: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page" role="main" aria-label="Three column layout example">
+    <header>
+      <h1>Three-column responsive layout</h1>
+      <p>Mobile-first: stacks to a single column on small screens, expands to three columns on wider screens (≥768px).</p>
+    </header>
+
+    <section class="grid" aria-live="polite">
+      <article class="card" aria-label="Column 1">
+        <h2>Column 1</h2>
+        <p>Content for the first column. Put any HTML here — lists, images, forms, whatever you need.</p>
+      </article>
+
+      <article class="card" aria-label="Column 2">
+        <h2>Column 2</h2>
+        <p>Content for the second column. The layout will keep equal column widths on larger screens.</p>
+      </article>
+
+      <article class="card" aria-label="Column 3">
+        <h2>Column 3</h2>
+        <p>Content for the third column. On mobile, these stack vertically in the same order.</p>
+      </article>
+    </section>
+  </div>
+</body>
+</html>
